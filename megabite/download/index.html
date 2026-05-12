@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>다운로드 — MK 유튜브 다운로더</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <meta http-equiv="refresh" content="1; url=/megabite/download/MKDownloader-1.0.0-setup.exe" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #08080a;
+      color: #f4f4f6;
+      font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 0% -10%, rgba(255, 32, 80, 0.5), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(168, 85, 247, 0.35), transparent 60%);
+    }
+    .card {
+      max-width: 480px;
+      text-align: center;
+      padding: 48px 36px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      backdrop-filter: blur(40px) saturate(1.4);
+    }
+    .icon {
+      width: 80px; height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, #ff2050, #ff5577, #c8228a);
+      border-radius: 20px;
+      display: grid; place-items: center;
+      font-size: 36px; color: white;
+      box-shadow: 0 12px 36px rgba(255, 32, 80, 0.4);
+    }
+    h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px; }
+    p { color: #a8a8b0; font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #ff2050, #ff5577);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(255, 32, 80, 0.4);
+      margin-bottom: 16px;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(255, 32, 80, 0.5); }
+    .meta {
+      font-size: 12px;
+      color: #6e6e78;
+      margin-top: 8px;
+    }
+    .home {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      color: #f4f4f6;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .home:hover { background: rgba(255, 255, 255, 0.1); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">▼</div>
+    <h1>다운로드를 시작합니다</h1>
+    <p>
+      MK 유튜브 다운로더 v1.0.0<br />
+      잠시 후 자동으로 다운로드가 시작됩니다.
+    </p>
+    <a class="btn-primary" href="/megabite/download/MKDownloader-1.0.0-setup.exe" download>
+      ↓ 자동으로 시작되지 않으면 클릭
+    </a>
+    <div class="meta">Windows 10/11 · 약 3.7 MB · NSIS 인스톨러</div>
+    <br />
+    <a class="home" href="/">← mkvibe.com 으로 돌아가기</a>
+  </div>
+</body>
+</html>

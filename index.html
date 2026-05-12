@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK 유튜브 다운로더 — mkvibe</title>
+  <meta name="description" content="유튜브, SOOP, 트위치, 인스타그램, 틱톡 등 1800+ 사이트의 동영상을 한 입에. 광고 없는 무료 데스크톱 앱." />
+  <meta name="theme-color" content="#0a0612" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MK 유튜브 다운로더 — mkvibe" />
+  <meta property="og:description" content="1800+ 사이트의 동영상을 한 입에 받는 무료 데스크톱 앱" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mkvibe.com" />
+  <meta property="og:image" content="https://mkvibe.com/assets/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/favicon-128.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+  <style>
+    :root {
+      --bg-0: #08080a;
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-hi: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #f4f4f6;
+      --text-dim: #a8a8b0;
+      --text-faint: #6b6b75;
+      --accent: #ff2050;
+      --accent-2: #ff5577;
+      --accent-3: #c8228a;
+      --accent-glow: rgba(255, 32, 80, 0.5);
+      --purple: #a855f7;
+      --blue: #6088ff;
+      --cyan: #06b6d4;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg-0);
+      color: var(--text);
+      font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-image:
+        radial-gradient(ellipse 70% 50% at 0% -10%, rgba(255, 32, 80, 0.5), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(168, 85, 247, 0.35), transparent 60%),
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59, 130, 246, 0.2), transparent 65%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Nav ===== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      background: rgba(8, 6, 18, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .brand-logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      background: linear-gradient(110deg, #ff2050 0%, #c8228a 25%, #a855f7 55%, #6088ff 80%, #06b6d4 100%);
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-flow 7s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    @keyframes gradient-flow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dim);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.15s var(--ease);
+    }
+    .nav-link:hover { color: var(--text); background: var(--glass); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .btn-ghost {
+      background: var(--glass);
+      color: var(--text);
+      border-color: var(--border);
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+    .btn-ghost:hover { background: var(--glass-hi); border-color: var(--border-strong); }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-icon {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 28px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 44px;
+      color: white;
+      box-shadow:
+        0 16px 48px var(--accent-glow),
+        0 0 80px rgba(255, 32, 80, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-edition {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #d8d8e0;
+      background: linear-gradient(135deg, rgba(180, 180, 200, 0.2), rgba(140, 140, 160, 0.1));
+      border: 1px solid rgba(200, 200, 220, 0.25);
+      padding: 5px 11px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #c8c8d0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 20px;
+      color: var(--text-dim);
+      margin-bottom: 36px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    .hero-tagline b { color: var(--text); font-weight: 700; }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      background-size: 200% 200%;
+      animation: gradient-flow 6s ease infinite;
+      color: white;
+      padding: 18px 36px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      border-radius: 14px;
+      box-shadow:
+        0 12px 36px var(--accent-glow),
+        0 0 60px rgba(255, 32, 80, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: all 0.2s var(--ease);
+      border: none;
+      cursor: pointer;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px var(--accent-glow);
+    }
+
+    .hero-meta {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-faint);
+      letter-spacing: 0.3px;
+    }
+
+    .hero-trust {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
+    .hero-trust em { color: #4ade80; font-style: normal; }
+
+    /* ===== Supported sites ===== */
+    .sites {
+      padding: 40px 0;
+      text-align: center;
+    }
+    .sites-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 18px;
+    }
+    .sites-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .chip {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      padding: 6px 14px 6px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.15s var(--ease);
+    }
+    .chip:hover { background: rgba(255, 255, 255, 0.09); color: var(--text); transform: translateY(-2px); }
+    .chip i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    .chip.yt i { background: #ff0033; box-shadow: 0 0 8px rgba(255, 0, 51, 0.4); }
+    .chip.soop i { background: #1e88e5; box-shadow: 0 0 8px rgba(30, 136, 229, 0.4); }
+    .chip.twitch i { background: #9146ff; box-shadow: 0 0 8px rgba(145, 70, 255, 0.4); }
+    .chip.tiktok i { background: #ff0050; box-shadow: 0 0 8px rgba(255, 0, 80, 0.4); }
+    .chip.instagram i { background: #e1306c; box-shadow: 0 0 8px rgba(225, 48, 108, 0.4); }
+    .chip.x i { background: #e8e8e8; box-shadow: 0 0 8px rgba(232, 232, 232, 0.3); }
+    .chip.naver i { background: #03c75a; box-shadow: 0 0 8px rgba(3, 199, 90, 0.4); }
+    .chip.kakao i { background: #ffe812; box-shadow: 0 0 8px rgba(255, 232, 18, 0.4); }
+    .chip.vimeo i { background: #1ab7ea; box-shadow: 0 0 8px rgba(26, 183, 234, 0.4); }
+    .chip.facebook i { background: #1877f2; box-shadow: 0 0 8px rgba(24, 119, 242, 0.4); }
+    .chip.reddit i { background: #ff4500; box-shadow: 0 0 8px rgba(255, 69, 0, 0.4); }
+    .chip.bilibili i { background: #00a1d6; box-shadow: 0 0 8px rgba(0, 161, 214, 0.4); }
+    .chip.more {
+      color: var(--text-faint);
+      font-style: italic;
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    /* ===== Section ===== */
+    .section {
+      padding: 80px 0;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      text-align: center;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff 0%, #c8c8d0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    /* ===== Features ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .feature {
+      background: var(--glass);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: all 0.25s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20%; right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      background: var(--glass-hi);
+      border-color: var(--border-strong);
+    }
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+    .feature-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ===== Demo (mock UI) ===== */
+    .demo-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(255, 32, 80, 0.08), rgba(168, 85, 247, 0.04));
+      border-radius: 24px;
+      border: 1px solid var(--border);
+    }
+    .mock-app {
+      background: rgba(8, 6, 18, 0.85);
+      border: 1px solid var(--border-strong);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+    }
+    .mock-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .mock-logo {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 22px; color: white;
+    }
+    .mock-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .mock-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .mock-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .mock-label::before {
+      content: "";
+      display: inline-block;
+      width: 4px; height: 14px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      margin-right: 8px;
+    }
+    .mock-input {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--text-dim);
+    }
+    .mock-buttons {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .mock-btn {
+      flex: 1;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .mock-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      border-color: transparent;
+    }
+    .mock-btn.purple {
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      color: white;
+      border-color: transparent;
+    }
+
+    /* ===== Standard teaser ===== */
+    .teaser {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(96, 136, 255, 0.08));
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 24px;
+      padding: 24px 40px 48px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .teaser-tag {
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2.8px;
+      color: var(--purple);
+      background: rgba(168, 85, 247, 0.15);
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      margin-bottom: 20px;
+    }
+    .teaser-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .teaser-desc {
+      font-size: 16px;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .teaser-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .teaser-feature {
+      font-size: 13px;
+      font-weight: 600;
+      color: #d4b6ff;
+      padding: 6px 13px;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 999px;
+    }
+
+    /* ===== Contact ===== */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--border-strong);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 25%; right: 25%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 32, 80, 0.5), transparent);
+    }
+    .contact-tag {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+    .contact-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff 0%, #c8c8d0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .contact-desc {
+      font-size: 15px;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+    .contact-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-btn {
+      padding: 12px 22px;
+      font-size: 14px;
+    }
+    .contact-meta {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    /* ===== About mkvibe ===== */
+    .about {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+    .about-line {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+      line-height: 1.45;
+    }
+    .about-desc {
+      font-size: 15px;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .about-links {
+      display: inline-flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 80px;
+      padding: 40px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-faint);
+    }
+    .footer a { color: var(--text-dim); }
+    .footer a:hover { color: var(--text); }
+    .footer-row { margin-bottom: 8px; }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+      .nav-link { display: none; }
+      .nav-link.btn-ghost { display: inline-flex; }
+      .hero { padding: 50px 0 40px; }
+      .hero-title { font-size: 38px; }
+      .hero-tagline { font-size: 17px; }
+      .hero-cta { padding: 16px 28px; font-size: 16px; }
+      .section { padding: 50px 0; }
+      .section-title { font-size: 28px; }
+      .features { grid-template-columns: 1fr; }
+      .teaser { padding: 32px 24px; }
+      .teaser-title { font-size: 24px; }
+      .about-line { font-size: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Nav ===== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand-logo">mkvibe.com</a>
+      <div class="nav-links">
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#download" class="btn btn-primary">⬇ 다운로드</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="hero" id="download">
+    <div class="container">
+      <div class="hero-icon">▼</div>
+      <span class="hero-edition">BASIC v1.0</span>
+      <h1 class="hero-title">MK 유튜브 다운로더</h1>
+      <p class="hero-tagline">
+        유튜브, SOOP, 트위치, 인스타, 틱톡...<br />
+        <b>1800+ 사이트의 동영상을 한 입에</b> 받는 무료 데스크톱 앱
+      </p>
+      <a href="/megabite/download/MKDownloader-1.0.0-setup.exe" class="hero-cta">
+        ⬇ Windows 다운로드
+      </a>
+      <div class="hero-meta">v1.0.0 · 약 10 MB · Windows 10/11</div>
+
+      <div class="hero-trust">
+        <span><em>✓</em> 광고 0%</span>
+        <span><em>✓</em> 사용자 추적 0%</span>
+        <span><em>✓</em> 검증된 오픈소스 엔진</span>
+        <span><em>✓</em> 평생 무료</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Supported sites ===== -->
+  <section class="sites">
+    <div class="container">
+      <div class="sites-label">SUPPORTED PLATFORMS</div>
+      <div class="sites-grid">
+        <span class="chip yt"><i></i>YouTube</span>
+        <span class="chip soop"><i></i>SOOP</span>
+        <span class="chip twitch"><i></i>Twitch</span>
+        <span class="chip tiktok"><i></i>TikTok</span>
+        <span class="chip instagram"><i></i>Instagram</span>
+        <span class="chip x"><i></i>X (Twitter)</span>
+        <span class="chip naver"><i></i>네이버TV</span>
+        <span class="chip kakao"><i></i>카카오TV</span>
+        <span class="chip facebook"><i></i>Facebook</span>
+        <span class="chip vimeo"><i></i>Vimeo</span>
+        <span class="chip reddit"><i></i>Reddit</span>
+        <span class="chip bilibili"><i></i>Bilibili</span>
+        <span class="chip more">+1700개 사이트</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Features ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">필요한 모든 기능</h2>
+      <p class="section-sub">유료 도구 그 이상, 무료로</p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🎬</div>
+          <div class="feature-title">최대 4K UHD</div>
+          <div class="feature-desc">최고 화질부터 저화질까지 자유롭게 선택. AV1·VP9·H.264 모든 코덱 지원.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎵</div>
+          <div class="feature-title">MP3 음원 추출</div>
+          <div class="feature-desc">최고 음질 자동, 썸네일·메타데이터까지 같이 임베드.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✨</div>
+          <div class="feature-title">AI 쇼츠 자동 생성</div>
+          <div class="feature-desc">유튜브 "다시 본 구간" 데이터로 하이라이트 자동 추출 → 9:16 세로 변환.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📜</div>
+          <div class="feature-title">자막 다운로드</div>
+          <div class="feature-desc">다국어 자막·자동생성 자막 모두. SRT 또는 영상에 임베드.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🚫</div>
+          <div class="feature-title">SponsorBlock</div>
+          <div class="feature-desc">광고·스폰서·인트로·아웃트로 자동 감지 및 제거.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">멀티 다운로드 큐</div>
+          <div class="feature-desc">여러 영상 한 번에 등록, 순차 처리. 진행률·속도 실시간.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Demo mock ===== -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="demo-wrap">
+        <div class="mock-app">
+          <div class="mock-header">
+            <div class="mock-logo">▼</div>
+            <div class="mock-title">MK 유튜브 다운로더</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-label">동영상 주소</div>
+            <div class="mock-input">https://www.youtube.com/watch?v=...</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-label">형식</div>
+            <div class="mock-buttons">
+              <div class="mock-btn active">🎬 MP4 영상</div>
+              <div class="mock-btn">🎵 MP3 음원</div>
+              <div class="mock-btn">🌐 WebM</div>
+              <div class="mock-btn">🎞 GIF</div>
+              <div class="mock-btn purple">✨ 쇼츠 자동</div>
+            </div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-label">화질</div>
+            <div class="mock-buttons">
+              <div class="mock-btn">최고</div>
+              <div class="mock-btn">4K</div>
+              <div class="mock-btn">1440p</div>
+              <div class="mock-btn active">1080p</div>
+              <div class="mock-btn">720p</div>
+              <div class="mock-btn">480p</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Standard teaser ===== -->
+  <section class="section" id="standard">
+    <div class="container">
+      <div class="teaser">
+        <span class="teaser-tag">COMING SOON</span>
+        <h2 class="teaser-title">Standard 모델 ✨</h2>
+        <p class="teaser-desc">
+          AI가 영상을 보고, 듣고, 이해해서 자동으로 쇼츠를 만들어줍니다.<br />
+          경쟁사 제품의 1/10 가격으로.
+        </p>
+        <div class="teaser-features">
+          <span class="teaser-feature">🎙 Whisper 자동 자막</span>
+          <span class="teaser-feature">🤖 AI 맥락 분석</span>
+          <span class="teaser-feature">👤 화자 자동 추적</span>
+          <span class="teaser-feature">⚡ 1.2× 속도 자동</span>
+          <span class="teaser-feature">🎨 자막 영상 임베드</span>
+          <span class="teaser-feature">🚀 GPU 가속 인코딩</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-tag">CONTACT</div>
+        <h2 class="contact-title">의견을 들려주세요</h2>
+        <p class="contact-desc">
+          버그 리포트, 기능 요청, 협업 제안 모두 환영합니다.<br />
+          가능한 빠르게 답장드릴게요.
+        </p>
+        <div class="contact-actions">
+          <a href="mailto:contact@mkvibe.com?subject=%5BMK%20%EC%9C%A0%ED%8A%9C%EB%B8%8C%20%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%8D%94%5D%20" class="btn btn-primary contact-btn">
+            💬 contact@mkvibe.com
+          </a>
+        </div>
+        <p class="contact-meta">
+          평균 24시간 내 답변 · 한국어 / English OK
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About mkvibe ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about">
+        <div class="about-title">ABOUT MKVIBE</div>
+        <div class="about-line">메가킴이 AI와 함께 만드는 도구들</div>
+        <p class="about-desc">
+          MK 유튜브 다운로더는 mkvibe 스튜디오의 첫 번째 제품입니다.
+          AI 시대 인디 개발자가 AI와 함께 만든, 광고 없는 깨끗한 도구.<br />
+          앞으로 더 많은 도구가 추가됩니다.
+        </p>
+        <div class="about-links">
+          <a href="https://github.com/megakim" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        © 2026 <a href="/">mkvibe</a> · 메가킴이 만듭니다
+      </div>
+      <div class="footer-row" style="font-size: 11px; color: var(--text-faint);">
+        본 도구는 사용자 본인의 콘텐츠 또는 저작권자가 허락한 콘텐츠 다운로드 용도로 제공됩니다.<br />
+        저작권법 준수는 사용자 책임입니다.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

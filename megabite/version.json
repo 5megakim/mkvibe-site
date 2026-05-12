@@ -1,0 +1,9 @@
+{
+  "app": {
+    "version": "1.0.0",
+    "release_date": "2026-05-12",
+    "download_url": "https://mkvibe.com/megabite/download/MKDownloader-1.0.0-setup.exe",
+    "release_notes_url": "https://mkvibe.com/#download",
+    "is_critical": false
+  }
+}
