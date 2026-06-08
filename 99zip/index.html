@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>99zip — 무료 압축·해제 프로그램 (ZIP·7z·RAR·EGG·ALZ) | mkvibe</title>
+  <meta name="description" content="99zip은 광고 없는 무료 압축 프로그램입니다. ZIP·7z 압축, RAR·EGG·ALZ·7z·TAR·ISO 풀기, AES-256 암호, 드래그 앤 드롭, 우클릭 메뉴 지원. Windows 10/11." />
+  <meta name="keywords" content="무료 압축 프로그램, 압축 프로그램 추천, 반디집 대안, zip 압축, 7z 압축, egg 풀기, alz 풀기, rar 풀기, 압축 비밀번호, 99zip, mkvibe" />
+  <meta name="author" content="mkvibe" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#08080a" />
+  <link rel="canonical" href="https://mkvibe.com/99zip/" />
+
+  <meta property="og:site_name" content="mkvibe" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mkvibe.com/99zip/" />
+  <meta property="og:title" content="99zip — 무료 압축·해제 프로그램" />
+  <meta property="og:description" content="광고 없는 무료 압축 프로그램. ZIP·7z 압축, RAR·EGG·ALZ 풀기, AES-256 암호, 드래그 앤 드롭. Windows 10/11." />
+  <meta property="og:image" content="https://mkvibe.com/assets/og-image.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="99zip — 무료 압축·해제 프로그램" />
+  <meta name="twitter:description" content="광고 없는 무료 압축 프로그램. ZIP·7z·RAR·EGG·ALZ 지원, AES-256 암호." />
+  <meta name="twitter:image" content="https://mkvibe.com/assets/og-image.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" href="/99zip/icon.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "99zip",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "url": "https://mkvibe.com/99zip/",
+    "publisher": { "@type": "Organization", "name": "mkvibe", "url": "https://mkvibe.com/" }
+  }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --teal1:#106892; --teal2:#289cca; --ink:#f4f4f6; --muted:#a8a8b0; --dim:#6e6e78; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #08080a;
+      color: var(--ink);
+      font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 0% -10%, rgba(40,156,202,0.30), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(16,104,146,0.30), transparent 60%);
+      background-attachment: fixed;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 32px; border: none; border-radius: 14px;
+      background: linear-gradient(135deg, var(--teal1), var(--teal2));
+      color: #fff; text-decoration: none; font-size: 16px; font-weight: 700;
+      box-shadow: 0 10px 30px rgba(40,156,202,0.40);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(40,156,202,0.55); }
+
+    /* Hero */
+    .hero { text-align: center; padding: 96px 0 64px; }
+    .logo {
+      width: 104px; height: 104px; margin: 0 auto 28px;
+      border-radius: 26px; display: block;
+      box-shadow: 0 16px 48px rgba(16,104,146,0.45);
+    }
+    .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; }
+    .hero .tag { font-size: 22px; font-weight: 700; color: var(--ink); margin-top: 6px; }
+    .hero p { color: var(--muted); font-size: 17px; margin: 18px auto 32px; max-width: 560px; }
+    .hero .meta { color: var(--dim); font-size: 13px; margin-top: 16px; }
+
+    /* Features */
+    .section-title { text-align: center; font-size: 30px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 8px; }
+    .section-sub { text-align: center; color: var(--muted); margin-bottom: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feat {
+      padding: 28px 24px; border-radius: 18px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(20px);
+    }
+    .feat .ico { font-size: 30px; margin-bottom: 12px; }
+    .feat h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .feat p { color: var(--muted); font-size: 14px; }
+
+    /* Why */
+    .why { margin: 80px 0; padding: 48px 40px; border-radius: 24px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .why .row { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 28px; }
+    .why .item .n { font-size: 30px; font-weight: 800; background: linear-gradient(135deg,var(--teal2),#5cc0e6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .why .item .l { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+    /* Download */
+    .download { text-align: center; padding: 72px 0 40px; }
+
+    footer { text-align: center; color: var(--dim); font-size: 13px; padding: 48px 0 64px; border-top: 1px solid rgba(255,255,255,0.07); margin-top: 40px; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 720px) {
+      .hero h1 { font-size: 42px; }
+      .grid { grid-template-columns: 1fr; }
+      .why .row { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="hero">
+      <img class="logo" src="/99zip/icon.png" alt="99zip 아이콘" width="104" height="104" />
+      <h1>99zip</h1>
+      <div class="tag">무료 압축·해제 프로그램</div>
+      <p>광고 없이 가볍게. ZIP·7z 압축부터 RAR·EGG·ALZ 풀기까지, 비밀번호 암호화와 드래그 앤 드롭을 한 번에.</p>
+      <a class="btn" href="/99zip/download/">↓ Windows용 무료 다운로드</a>
+      <div class="meta">Windows 10 / 11 · 64비트 · 코드 서명</div>
+    </header>
+
+    <section>
+      <h2 class="section-title">필요한 압축 기능, 전부</h2>
+      <p class="section-sub">공식 7-Zip 엔진 기반으로 빠르고 안정적입니다.</p>
+      <div class="grid">
+        <div class="feat"><div class="ico">🗜️</div><h3>강력한 압축</h3><p>ZIP·7z 생성. 저장/빠르게/균형/작게 4단계 압축률 선택.</p></div>
+        <div class="feat"><div class="ico">📂</div><h3>다 풀린다</h3><p>RAR·EGG·ALZ·7z·TAR·TGZ·LZH·ISO·ARJ·SFX 등 폭넓게 해제.</p></div>
+        <div class="feat"><div class="ico">🔒</div><h3>AES-256 암호</h3><p>비밀번호로 ZIP 암호화. 7z는 헤더까지 암호화해 목록도 숨김.</p></div>
+        <div class="feat"><div class="ico">🖱️</div><h3>드래그 앤 드롭</h3><p>오른쪽 버튼으로 끌어다 놓으면 바로 풀기 메뉴가 뜹니다.</p></div>
+        <div class="feat"><div class="ico">🧩</div><h3>우클릭 메뉴</h3><p>탐색기 우클릭에서 압축·해제. 파일 형식 연결도 지원.</p></div>
+        <div class="feat"><div class="ico">🛡️</div><h3>안전하게</h3><p>무결성 검사, 분할/병합, 압축 폭탄·경로 공격(ZIP Slip) 방어.</p></div>
+      </div>
+    </section>
+
+    <section class="why">
+      <h2 class="section-title">왜 99zip?</h2>
+      <div class="row">
+        <div class="item"><div class="n">0</div><div class="l">광고 · 추적</div></div>
+        <div class="item"><div class="n">₩0</div><div class="l">평생 무료</div></div>
+        <div class="item"><div class="n">1-클릭</div><div class="l">설치하면 바로 사용</div></div>
+      </div>
+    </section>
+
+    <section class="download" id="download">
+      <h2 class="section-title">지금 시작하세요</h2>
+      <p class="section-sub">설치 후 탐색기 우클릭·드래그 드롭으로 바로 압축/해제할 수 있습니다.</p>
+      <a class="btn" href="/99zip/download/">↓ 99zip 무료 다운로드</a>
+      <div class="meta" style="margin-top:14px;">Windows 10 / 11 · 64비트</div>
+    </section>
+
+    <footer>
+      99zip은 <a href="/">mkvibe</a> 스튜디오가 만든 무료 도구입니다. · <a href="/">← mkvibe.com</a>
+    </footer>
+
+  </div>
+</body>
+</html>
