@@ -66,8 +66,23 @@
     }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(40,156,202,0.55); }
 
+    /* 상단 네비 (제품 이동 탭) */
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5); background: rgba(8,8,10,0.6); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1080px; margin: 0 auto; }
+    .brand-logo {
+      font-size: 22px; font-weight: 800; letter-spacing: -0.6px; text-decoration: none;
+      background: linear-gradient(110deg, #ff2050 0%, #c8228a 25%, #a855f7 55%, #6088ff 80%, #06b6d4 100%);
+      background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: gradient-flow 7s ease-in-out infinite;
+    }
+    @keyframes gradient-flow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .nav-tabs { display: flex; gap: 6px; }
+    .nav-tab { font-size: 14px; font-weight: 600; color: var(--muted); padding: 8px 16px; border-radius: 10px; text-decoration: none; transition: all .15s; }
+    .nav-tab:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
+    .nav-tab.active { color: var(--ink); background: rgba(255,255,255,0.1); }
+
     /* Hero */
-    .hero { text-align: center; padding: 96px 0 64px; }
+    .hero { text-align: center; padding: 56px 0 64px; }
     .logo {
       width: 104px; height: 104px; margin: 0 auto 28px;
       border-radius: 26px; display: block;
@@ -113,6 +128,17 @@
   </style>
 </head>
 <body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand-logo">mkvibe.com</a>
+      <div class="nav-tabs">
+        <a href="/" class="nav-tab">MK 다운로더</a>
+        <a href="/99zip/" class="nav-tab active">99zip</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="wrap">
 
     <header class="hero">
