@@ -2,11 +2,11 @@
   "main": {
     "enabled": true,
     "image": "banner-main.png",
-    "link": "https://mkvibe.com/99zip/"
+    "link": "https://blog.naver.com/99pcas"
   },
   "progress": {
     "enabled": true,
     "image": "banner-progress.png",
-    "link": "https://mkvibe.com/99zip/"
+    "link": "https://blog.naver.com/99pcas"
   }
 }
