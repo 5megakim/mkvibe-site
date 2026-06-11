@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "version": "1.0.42",
+  "title": "99zip 1.0.42 업데이트",
+  "changes": [
+    "압축 시작 시 멈춤(응답 없음) 해결",
+    "압축·풀기 총 소요시간 표시",
+    "취소 시 백그라운드 7z 종료(고아 프로세스 방지)",
+    "7z 폴더 개수 카운트 정확도 개선",
+    "새 버전 업데이트 알림 추가"
+  ],
+  "downloadUrl": "https://mkvibe.com/99zip/download/",
+  "buttonText": "지금 업데이트",
+  "adImage": "https://mkvibe.com/99zip/banner-main.png",
+  "adLink": "https://blog.naver.com/99pcas"
+}
