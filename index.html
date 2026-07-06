@@ -6,7 +6,7 @@
 
   <!-- Primary SEO -->
   <title>MK 유튜브 다운로더 — 1800+ 사이트 무료 영상 다운로드 | mkvibe</title>
-  <meta name="description" content="유튜브, SOOP, 트위치, 인스타, 틱톡 등 1800+ 사이트의 영상을 4K로 무료 다운로드. 광고 0%, 사용자 추적 0%, 평생 무료. Windows 데스크톱 앱." />
+  <meta name="description" content="유튜브, SOOP, 트위치, 인스타, 틱톡 등 1800+ 사이트의 영상을 4K로 무료 다운로드. 광고 0%, 사용자 추적 0%, 평생 무료. Windows·맥 데스크톱 앱." />
   <meta name="keywords" content="유튜브 다운로더, 무료 유튜브 다운로드, 영상 다운로드, 4K 영상 다운로드, MP3 추출, SOOP VOD 저장, 트위치 다시보기, 인스타 영상 저장, 틱톡 다운로드, mkvibe" />
   <meta name="author" content="mkvibe" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -66,14 +66,14 @@
     "name": "MK 유튜브 다운로더",
     "alternateName": "MK Downloader",
     "url": "https://mkvibe.com/",
-    "downloadUrl": "https://mkvibe.com/megabite/download/MKDownloader-1.0.1-setup.exe",
-    "softwareVersion": "1.0.1",
+    "downloadUrl": "https://mkvibe.com/megabite/download/MKDownloader-1.0.2-setup.exe",
+    "softwareVersion": "1.0.2",
     "fileSize": "3.7 MB",
-    "operatingSystem": "Windows 10, Windows 11",
+    "operatingSystem": "Windows 10, Windows 11, macOS 10.15+",
     "applicationCategory": "MultimediaApplication",
     "applicationSubCategory": "VideoDownloader",
     "inLanguage": "ko-KR",
-    "description": "유튜브, SOOP, 트위치, 인스타, 틱톡 등 1800+ 사이트의 영상을 4K로 다운로드하는 무료 Windows 데스크톱 앱. 광고 없음, 사용자 추적 없음, 평생 무료.",
+    "description": "유튜브, SOOP, 트위치, 인스타, 틱톡 등 1800+ 사이트의 영상을 4K로 다운로드하는 무료 Windows·맥 데스크톱 앱. 광고 없음, 사용자 추적 없음, 평생 무료.",
     "image": "https://mkvibe.com/assets/og-image.png",
     "screenshot": "https://mkvibe.com/assets/og-image.png",
     "offers": {
@@ -342,12 +342,59 @@
       box-shadow: 0 16px 48px var(--accent-glow);
     }
 
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-cta.mac {
+      background: linear-gradient(135deg, #3a3a44 0%, #26262e 60%, #1a1a20 100%);
+      box-shadow:
+        0 12px 36px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      animation: none;
+    }
+    .hero-cta.mac:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-cta-meta {
+      font-size: 12px;
+      color: var(--text-faint);
+      letter-spacing: 0.3px;
+    }
+
     .hero-meta {
       margin-top: 14px;
       font-size: 13px;
       color: var(--text-faint);
       letter-spacing: 0.3px;
     }
+
+    .mac-note {
+      margin: 18px auto 0;
+      max-width: 560px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 16px;
+    }
+    .mac-note b { color: var(--text); }
 
     .hero-trust {
       display: flex;
@@ -785,16 +832,32 @@
   <header class="hero" id="download">
     <div class="container">
       <div class="hero-icon">▼</div>
-      <span class="hero-edition">BASIC v1.0.1</span>
+      <span class="hero-edition">BASIC v1.0.2</span>
       <h1 class="hero-title">MK 유튜브 다운로더</h1>
       <p class="hero-tagline">
         유튜브, SOOP, 트위치, 인스타, 틱톡...<br />
         <b>1800+ 사이트의 동영상을 한 입에</b> 받는 무료 데스크톱 앱
       </p>
-      <a href="/megabite/download/MKDownloader-1.0.1-setup.exe" class="hero-cta">
-        ⬇ Windows 다운로드
-      </a>
-      <div class="hero-meta">v1.0.1 · 약 10 MB · Windows 10/11</div>
+      <div class="hero-ctas">
+        <div class="hero-cta-col">
+          <a href="/megabite/download/MKDownloader-1.0.2-setup.exe" class="hero-cta">
+            ⬇ Windows 다운로드
+          </a>
+          <span class="hero-cta-meta">Windows 10/11 · 약 3.7 MB</span>
+        </div>
+        <div class="hero-cta-col">
+          <a href="/megabite/download/MKDownloader-1.0.2-macos-universal.dmg" class="hero-cta mac">
+            ⬇ macOS 다운로드
+          </a>
+          <span class="hero-cta-meta">macOS 10.15+ · 약 12 MB · Intel/Apple Silicon</span>
+        </div>
+      </div>
+      <div class="hero-meta">v1.0.2 · 광고 없는 무료 데스크톱 앱</div>
+      <div class="mac-note">
+        🍎 <b>맥 첫 실행 안내</b> — 무료 배포라 Apple 개발자 서명이 없어요.
+        처음 열 때 Finder에서 앱을 <b>우클릭(Control-클릭) → 열기</b>를 선택하세요.
+        최신 macOS에서는 <b>시스템 설정 → 개인정보 보호 및 보안</b>에서 "그래도 열기"를 눌러주면 됩니다.
+      </div>
 
       <div class="hero-trust">
         <span><em>✓</em> 광고 0%</span>

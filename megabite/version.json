@@ -1,9 +1,35 @@
 {
+  "schema_version": 2,
   "app": {
-    "version": "1.0.1",
-    "release_date": "2026-05-13",
-    "download_url": "https://mkvibe.com/megabite/download/MKDownloader-1.0.1-setup.exe",
+    "version": "1.0.2",
+    "release_date": "2026-07-07",
+    "download_url": "https://mkvibe.com/megabite/download/MKDownloader-1.0.2-setup.exe",
+    "sha256": "7ad3741608e36b60590a075d2ac0a0ead1e14df4869dfdfd5a6ce4cd61cfbea1",
+    "size_bytes": 3859511,
     "release_notes_url": "https://mkvibe.com/#download",
     "is_critical": false
+  },
+  "platforms": {
+    "windows-x86_64": {
+      "version": "1.0.2",
+      "release_date": "2026-07-07",
+      "installer_type": "nsis",
+      "download_url": "https://mkvibe.com/megabite/download/MKDownloader-1.0.2-setup.exe",
+      "sha256": "7ad3741608e36b60590a075d2ac0a0ead1e14df4869dfdfd5a6ce4cd61cfbea1",
+      "size_bytes": 3859511,
+      "release_notes_url": "https://mkvibe.com/#download",
+      "is_critical": false
+    },
+    "macos-universal": {
+      "version": "1.0.2",
+      "release_date": "2026-07-07",
+      "installer_type": "dmg",
+      "download_url": "https://mkvibe.com/megabite/download/MKDownloader-1.0.2-macos-universal.dmg",
+      "sha256": "34f03c72f7de7266be3a758f9920f5ed3e289b62451e46433c9d2e866277e28e",
+      "size_bytes": 12116518,
+      "release_notes_url": "https://mkvibe.com/#download",
+      "is_critical": false,
+      "minimum_system_version": "10.15"
+    }
   }
 }
