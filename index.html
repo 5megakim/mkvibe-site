@@ -217,6 +217,13 @@
     }
     .nav-tab:hover { color: var(--text); background: var(--glass); }
     .nav-tab.active { color: var(--text); background: rgba(255, 255, 255, 0.1); }
+    .nav-tab-pro { display: inline-flex; align-items: center; gap: 7px; }
+    .nav-pro-badge {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+      padding: 2px 6px; border-radius: 6px; color: #fff;
+      background: linear-gradient(135deg, #5865f2, #a855f7);
+      box-shadow: 0 2px 8px rgba(88, 101, 242, 0.45);
+    }
     @media (max-width: 640px) { .nav-links .nav-link { display: none; } }
 
     .btn {
@@ -818,6 +825,7 @@
       <a href="/" class="brand-logo">mkvibe.com</a>
       <div class="nav-tabs">
         <a href="/" class="nav-tab active">MK 다운로더</a>
+        <a href="/megabite/mkcut/" class="nav-tab nav-tab-pro">MK Cut <span class="nav-pro-badge">PRO</span></a>
         <a href="/99zip/" class="nav-tab">99zip</a>
       </div>
       <div class="nav-links">
